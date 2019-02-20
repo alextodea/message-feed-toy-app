@@ -1,7 +1,15 @@
 const Thread = require("./threadSchema");
 
 exports.getThreads = (req,res) => {
-    res.status(200).json({"message":"This is the threads page"});
+    Thread.find({})
+    .populate("author_id")
+        .then( threadsArr => {
+            res.status(200).json(threadsArr);
+        })
+        .catch(e => {
+            console.error(e);
+            res.status(500).json({message:"Internal error!"});
+        })
 };
 
 exports.addThread = (req,res) => {

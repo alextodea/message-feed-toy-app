@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ThreadSchema = new Schema({
+    author_id: {type: Schema.Types.ObjectId, ref: "User",required: true},
     title: { type: String, required: true },
-    author_id: { type: String, unique: true, required: true },
     createdDate: { type: Date, default: Date.now }
 });
 

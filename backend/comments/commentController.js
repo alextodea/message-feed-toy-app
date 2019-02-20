@@ -1,9 +1,9 @@
-const Answer = require("./answerSchema");
+const Comment = require("./commentSchema");
 
-exports.addAnswer = (req,res) => {
-    const {content,thread_id,author_id} = req.body;
-    const newAnswer = new Answer({content,thread_id,author_id});
-    newAnswer.save()
+exports.addComment = (req,res) => {
+    const {author_id,thread_id,body} = req.body;
+    const newComment = new Comment({body,thread_id,author_id});
+    newComment.save()
         .then( savedAnswer => {
             res.status(200).json({message:"Answer added succesfully!",body:savedAnswer})
         })
@@ -12,3 +12,5 @@ exports.addAnswer = (req,res) => {
             res.status(500).json({message:"Internal error!"});
         })
 }
+
+// get comments

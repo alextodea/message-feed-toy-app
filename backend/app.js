@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const userRoutes = require("./users/userRoutes");
 const threadRoutes = require("./threads/threadRoutes");
-const answerRoutes = require("./answers/answerRoutes");
+const commentRoutes = require("./comments/commentRoutes");
 
 const dbConnection = require("./db-connect");
 require('dotenv').config()
@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json());
 
 // define main routes
-app.use("/user",userRoutes);
+app.use("/users",userRoutes);
 app.use("/threads",threadRoutes);
-app.use("/answers",answerRoutes);
+app.use("/comments",commentRoutes);
 
 module.exports = app;
