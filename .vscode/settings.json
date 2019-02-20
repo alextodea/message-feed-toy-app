@@ -1,0 +1,6 @@
+{
+    "files.autoSave": "onWindowChange",
+    "emmet.syntaxProfiles": {
+        "javascript":"jsx"
+    }
+}

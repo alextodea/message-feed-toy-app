@@ -2,9 +2,8 @@ const express = require("express");
 const router = express.Router();
 const {verifyToken} = require("../users/authentication/validation");
 
-const threadController = require("./threadController");
+const answerController = require("./answerController");
 
-router.get("/",threadController.getThreads);
-router.post("/add",threadController.addThread);
+router.post("/add",answerController.addAnswer);
 
 module.exports = router

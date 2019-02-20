@@ -1,23 +1,24 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import * as ROUTES from "../../constants/routes";
 
 class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to={ROUTES.FEED}>
           Feedio
         </Link>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarsExample02">
+      <div className="collapse navbar-collapse">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <Link className="nav-link" to="/">Threads <span className="sr-only">(current)</span></Link>
+            <Link className="nav-link" to={ROUTES.FEED}>Feed<span className="sr-only">(current)</span></Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/profile">Profile</Link>
+            <Link className="nav-link" to={ROUTES.PROFILE}>Profile</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to={ROUTES.LOG_IN}>Log in</Link>
           </li>
         </ul>
       </div>
