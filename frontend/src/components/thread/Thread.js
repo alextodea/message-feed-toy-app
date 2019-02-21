@@ -1,21 +1,28 @@
 import React, { Component } from 'react'
-import ThreadDetails from "./ThreadDetails";
-import ThreadTitle from "./ThreadTitle";
+import {formatDate} from "../../helpers/common";
 
-class Thread extends Component {
-  
+export default class Thread extends Component {
   render() {
+    
+    const details = this.props.details;
+    const {authorEmail,createdDate,title} = details
+    const formattedDate = formatDate(createdDate);
+
     return (
-      <div class="card">
-        <div class="card-body">
-          <ThreadTitle question="Dummy question"/>
-          <ThreadDetails author="Alex" createdDate="24th of August 2019"/>
-          <a type="submit" class="btn btn-primary">Answer</a>
-          <a href="#" class="btn btn-primary">View Answers</a>
+        <div className="row d-flex justify-content-center">
+            <div className="col-xs-12 col-sm-12 col-md-8 col-lg-6">
+                <div className="card text-center">
+                    <div className="card-body">
+                        <h5 className="card-title">{authorEmail}</h5>
+                        <p className="card-text">{title}</p>
+                        <a className="btn btn-primary">View Answers</a>
+                    </div>
+                    <div className="card-footer text-muted">
+                        Posted on: {formattedDate}
+                    </div>
+                </div>
+            </div>
         </div>
-</div>
     )
   }
 }
-
-export default Thread

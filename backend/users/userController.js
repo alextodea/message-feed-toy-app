@@ -1,9 +1,16 @@
 const validation = require("./authentication/validation");
 const login = require("./authentication/login");
 const registration = require("./authentication/registration");
+const User = require("./userSchema");
 
-exports.getProfile = (req,res) => {
-    res.status(200).json({"message":"This is the profile page"});
+exports.getProfile = async (req,res) => {
+    try {
+        const email = req.query.email;
+        const user = await User.findOne({email}).populate("threads").exec();
+        res.status(200).json({"message":user});
+    } catch(e) {
+
+    }
 };
 
 exports.getLogin = (req,res) => {
@@ -39,12 +46,7 @@ exports.postRegister = async (req,res) => {
         await registration.encryptUserPassword(req.body);
         await registration.saveUserInDB(req.body);
         
-        res.status(200).json(
-            {
-                message: "Success!",
-                body: req.body
-            }
-        )
+        res.status(200).json(req.body)
     } catch (err) {
         console.log(err)
         res.status(500).json(err)

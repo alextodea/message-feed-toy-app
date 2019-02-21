@@ -3,7 +3,7 @@ const router = express.Router();
 const userController = require("./userController");
 const {verifyToken} = require("./authentication/validation");
 
-router.get("/profile",verifyToken,userController.getProfile);
+router.get("/my-profile",userController.getProfile);
 
 // Log in user
 router.post("/login",userController.postLogin);

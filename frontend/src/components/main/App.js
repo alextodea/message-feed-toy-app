@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 
 // components
@@ -10,13 +10,14 @@ import Feed from "../../pages/Feed";
 import Profile from "../../pages/Profile";
 import LogIn from "../../pages/LogIn";
 import Register from "../../pages/Register";
+// import NotFound from "../shared/NotFound";
 
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <Router>
+      <BrowserRouter>
         <div className="App">
           <Navbar/>
           <Route path={ROUTES.FEED} exact={true} component={Feed} />
@@ -24,7 +25,7 @@ class App extends Component {
           <Route path={ROUTES.REGISTER} exact={true} component={Register} />
           <Route path={ROUTES.LOG_IN} exact={true} component={LogIn} />
         </div>
-      </Router>
+      </BrowserRouter>
     );
   }
 }

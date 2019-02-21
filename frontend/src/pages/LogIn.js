@@ -1,29 +1,18 @@
 import React, { Component } from 'react'
 
-class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: "",
-            password:""
-        };
-    }
-
-    render() {
-        return (
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Email:
-              <input type="text"/>
-            </label>
-            <label>
-            Password:
-              <input type="password"/>
-            </label>
-            <input type="submit" value="Submit"/>
-          </form>
-        );
-      }
-    }
-
-export default Login
+export default class LogIn extends Component {
+  constructor() {
+    super()
+  }
+  
+  render() {
+    return (
+      <form className="logInForm" onSubmit={()=>this.authenticate()}>
+        <h2>Log in to share questions with other users.</h2>
+        <input type="text" className="log-in-email" ref={input=>this.email = input}/>
+        <input type="password" className="log-in-password" ref={input=>this.password = input}/>
+        <button type="submit" className="log-in-btn">Log in</button>
+    </form>
+    )
+  }
+}

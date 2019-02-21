@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const User = require("../userSchema");
 const bcrypt = require("bcryptjs");
 
@@ -33,10 +34,15 @@ exports.encryptUserPassword = (userObj) => {
 exports.saveUserInDB = (userObj) => {
     return new Promise( (resolve,reject) => {
         const {email,password} = userObj
-        const newUser = new User({email,password});
+        const newUser = new User({
+            _id: new mongoose.Types.ObjectId(),
+            email,
+            password
+        });
         
         newUser.save()
             .then( (savedUser) => {
+                console.log(savedUser);
                 resolve(savedUser);
             })
             .catch(err => {
