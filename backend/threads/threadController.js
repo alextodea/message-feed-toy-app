@@ -5,21 +5,15 @@ exports.getThreads = (req,res) => {
     Thread.find({})
     .populate("author")
         .then( threadsArr => {
-            const mapThreads = threadsArr.map( thread => {
-                const {_id,title,createdDate} = thread;
-                const authorEmail = thread.author.email;
-                const threadObj = {};
+            const responseObj = {};
 
-                threadObj[_id] = {
-                    title,
-                    createdDate,
-                    authorEmail
-                };
-                
-                return threadObj 
-            });
+            threadsArr.forEach(threadObj => {
+                const email = threadObj.author.email;
+                const {_id,title,createdDate} = threadObj;
+                responseObj[_id] = {email,title,createdDate}
+            })
             
-            res.status(200).json(mapThreads);
+            res.status(200).json(responseObj);
         })
         .catch(e => {
             console.error(e);
