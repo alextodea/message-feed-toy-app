@@ -5,21 +5,20 @@ import {Redirect} from "react-router-dom";
 
 import LoginForm from "../components/auth/LoginForm";
 
-export default class LogIn extends Component {
+export default class Authenticate extends Component {
   constructor(props) {
     super(props)
   
     this.state = {
-       email: "",
-       password: "",
-       token: "",
-       message: ""
+      email: "",
+      password: "",
+      verificationPassword: ""
     }
 
     this.authenticate = this.authenticate.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
-
+  
   async authenticate(e) {
     e.preventDefault();
 
@@ -43,18 +42,11 @@ export default class LogIn extends Component {
     }
   }
 
-  handleInputChange(e) {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
-    this.setState({[name]:value})
-  }
-
-
-  
   render() {
-    const {isLoggedIn} = this.props;
-    if (isLoggedIn) return <Redirect to="/" />
-    return <LoginForm {...this}/>
+    return (
+      <div>
+        
+      </div>
+    )
   }
 }

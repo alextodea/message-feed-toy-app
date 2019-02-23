@@ -5,7 +5,7 @@ export default class Thread extends Component {
   render() {
     
     const details = this.props.details;
-    const {authorEmail,createdDate,title} = details
+    const {author,createdDate,title} = details;
     const formattedDate = formatDate(createdDate);
 
     return (
@@ -13,7 +13,7 @@ export default class Thread extends Component {
             <div className="col-xs-12 col-sm-12 col-md-8 col-lg-6">
                 <div className="card text-center">
                     <div className="card-body">
-                        <h5 className="card-title">{authorEmail}</h5>
+                        <h5 className="card-title">{author}</h5>
                         <p className="card-text">{title}</p>
                         <a className="btn btn-primary">View Answers</a>
                     </div>

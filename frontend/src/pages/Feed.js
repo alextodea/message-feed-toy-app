@@ -3,41 +3,57 @@ import React, { Component } from 'react'
 import Threads from "../components/thread/Threads";
 import AddThreadForm from "../components/thread/AddThreadForm";
 import axios from "axios";
+import {GET_THREADS, GET_SINGLE_USER} from "../../src/helpers/routes";
 
 export default class Feed extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.onThreadSubmit = this.onThreadSubmit.bind(this);
 
     this.state = {
-      threads: ""
+      threads: "",
+      isLoaded:false
     }
   }
 
-  componentDidMount() {
-    axios.get("http://localhost:4000/threads/")
-      .then( response => {
-        const threads = Object.values(response.data);
-        this.setState({threads});
-      })
-      .catch(e => {
-        console.log(e);
-      })
-  };
+  async componentDidMount() {
+    try {
+      const response = await axios.get(GET_THREADS);
+      const threads = response.data;
+      console.log(threads);
+      this.setState({threads});
+    } catch(e) {
+      console.error(e);
+    }
+  }
+  
+  async onThreadSubmit(title) {
+    try {
+      const threads = {...this.state.threads};
+      const emailFromLocalStorage = localStorage.getItem("email");
+      const FULL_URL = GET_SINGLE_USER + `?email=${emailFromLocalStorage}`;
+      const response = await axios.get(FULL_URL);
+      const userFromDb = response.data.user;
+      const {_id,createdDate} = userFromDb;
+      
+      threads[_id] = {
+        title,
+        author:emailFromLocalStorage,
+        createdDate
+      }
 
-  onThreadSubmit(questionTitle) {
-    const threads = {...this.state.threads};
-    threads[Date.now()] = questionTitle;
-    this.setState({threads});
+      this.setState({threads});
+    } catch(e) {
+      console.error(e);
+    }
   };
 
   render() {
-    const threadsObj = this.state.threads;
     return (
       <section className="feed">
         <AddThreadForm onThreadSubmit={this.onThreadSubmit} />
-        <Threads threads={threadsObj}/>
+        <Threads threads={this.state.threads}/>
       </section>
     )
   }

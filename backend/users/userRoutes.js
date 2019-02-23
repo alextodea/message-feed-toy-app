@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("./userController");
-const {verifyToken} = require("./authentication/validation");
 
-router.get("/my-profile",userController.getProfile);
+router.get("/get-single-user",userController.getSingleUser);
 
 // Log in user
 router.post("/login",userController.postLogin);

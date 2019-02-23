@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-export default function Profile() {
-  return (
-    <div>
-      <h1>Profile</h1>
-    </div>
-  )
+export default class Profile extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+     isLoaded:false  
+    }
+  }
+  
+  render() {
+
+    return (
+      <div>whatever</div>
+    )
+  }
 }
+

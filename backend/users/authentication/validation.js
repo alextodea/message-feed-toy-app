@@ -45,7 +45,7 @@ exports.compareStringAndHashPassword = (stringPass,hashPass) => {
 exports.signToken = (email) => {
     return new Promise( (resolve,reject) => {
         const payload = {email};
-        const options = {expiresIn: '30s'};
+        const options = {expiresIn: '2h'};
         jwt.sign(payload, process.env.SECRET_KEY,options,(err,token) =>{
             if (err) reject({message:"Internal error."})
             resolve(token)
@@ -54,12 +54,11 @@ exports.signToken = (email) => {
 };
 
 exports.verifyToken = (req,res,next) => {
-    jwt.verify(req.token,process.env.SECRET_KEY,(err,authData) => {
-        if (err) {
-            return res.status(403).json({message:"Unauthorized"})
-        } else {
-            console.log(authData);
-            next();
-        }
+    const bearerToken = req.headers["authorization"];
+    if (!bearerToken) return res.status(403).json({message:"Unauthorized."});
+    const token = bearerToken.split(" ")[1];
+    jwt.verify(token,process.env.SECRET_KEY,(err,authData) => {
+        if (err) return res.status(403).json({message:"Unauthorized."})
+        next();
     })
 };

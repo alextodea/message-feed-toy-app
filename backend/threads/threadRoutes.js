@@ -4,7 +4,7 @@ const {verifyToken} = require("../users/authentication/validation");
 
 const threadController = require("./threadController");
 
-router.get("/",threadController.getThreads);
+router.get("/",verifyToken,threadController.getThreads);
 router.post("/add",threadController.addThread);
 
 module.exports = router

@@ -2,5 +2,6 @@
     "files.autoSave": "onWindowChange",
     "emmet.syntaxProfiles": {
         "javascript":"jsx"
-    }
+    },
+    "editor.tabSize": 2
 }
