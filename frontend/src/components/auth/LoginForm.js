@@ -62,8 +62,7 @@ export default class LoginForm extends Component {
                 <EmailFormGroup handleInputChange={this.handleInputChange}/>
                 <PasswordFormGroup handleInputChange={this.handleInputChange}/>
                 <AuthenticateButton authBtnText={this.state.formTitle} />
-              </form>
-            </div>
+              </form>            </div>
             <LoginFormFooter/>
 		      </div>
       </div>

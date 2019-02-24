@@ -64,9 +64,32 @@ input {
 
 .single-thread-wrapper {
   margin: 2% 0;
-  width: 100%;
+  width: 70%;
 }
 
 .single-thread-card {
   width: 100%;
+}
+
+.single-thread-card .card-text {
+  background-color: #d3d3d3;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.single-thread-comment-input-wrapper {
+  padding: 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.single-thread-comment-input-wrapper input {
+  background-color: lightblue;
+  border: 0px solid;
+  width: 70%;
+}
+
+.single-thread-comment-input-wrapper button {
+  width: 25%;
 }

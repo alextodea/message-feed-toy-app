@@ -10,6 +10,7 @@ export default class Feed extends Component {
     super(props);
 
     this.onThreadSubmit = this.onThreadSubmit.bind(this);
+    this.onCommentSubmit = this.onCommentSubmit.bind(this);
 
     this.state = {
       threads: {},
@@ -41,12 +42,16 @@ export default class Feed extends Component {
         title
       };
       
-      await axios.post(POST_THREAD,postBody);
-      
-      threads[_id] = {
+      const postResponse = await axios.post(POST_THREAD,postBody);
+      // const comments = postResponse.data.body.comments;
+      const threadId = postResponse.data.body._id;
+
+      threads[threadId] = {
         title,
         email:emailFromLocalStorage,
-        createdDate
+        createdDate,
+        authorId: _id,
+        threadId
       }
 
       this.setState({threads});
@@ -55,11 +60,15 @@ export default class Feed extends Component {
     }
   };
 
+  async onCommentSubmit(comment){
+    console.log(comment);
+  }
+
   render() {
     return (
       <section className="feed">
         <AddThreadForm onThreadSubmit={this.onThreadSubmit} />
-        <Threads threads={this.state.threads}/>
+        <Threads onCommentSubmit={this.onCommentSubmit} threads={this.state.threads}/>
       </section>
     )
   }
