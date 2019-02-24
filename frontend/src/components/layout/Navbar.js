@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as ROUTES from "../../helpers/routes";
-import LogoutBtn from "../auth/LogoutBtn";
+import LogoutBtn from "../auth/shared/LogoutBtn";
 
 class Navbar extends Component {
   render() {
@@ -17,9 +17,6 @@ class Navbar extends Component {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <Link className="nav-link" to={ROUTES.FEED}>Feed</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to={ROUTES.PROFILE}>Profile</Link>
           </li>
           {logoutBtn}
         </ul>

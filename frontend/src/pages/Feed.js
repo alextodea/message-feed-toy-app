@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Threads from "../components/thread/Threads";
 import AddThreadForm from "../components/thread/AddThreadForm";
 import axios from "axios";
-import {GET_THREADS, GET_SINGLE_USER} from "../../src/helpers/routes";
+import {GET_THREADS, GET_SINGLE_USER,POST_THREAD} from "../../src/helpers/routes";
 
 export default class Feed extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ export default class Feed extends Component {
     this.onThreadSubmit = this.onThreadSubmit.bind(this);
 
     this.state = {
-      threads: "",
+      threads: {},
       isLoaded:false
     }
   }
@@ -21,7 +21,6 @@ export default class Feed extends Component {
     try {
       const response = await axios.get(GET_THREADS);
       const threads = response.data;
-      console.log(threads);
       this.setState({threads});
     } catch(e) {
       console.error(e);
@@ -36,10 +35,17 @@ export default class Feed extends Component {
       const response = await axios.get(FULL_URL);
       const userFromDb = response.data.user;
       const {_id,createdDate} = userFromDb;
+
+      const postBody = {
+        author:_id,
+        title
+      };
+      
+      await axios.post(POST_THREAD,postBody);
       
       threads[_id] = {
         title,
-        author:emailFromLocalStorage,
+        email:emailFromLocalStorage,
         createdDate
       }
 

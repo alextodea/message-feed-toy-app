@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body{
+background-image: url('http://getwallpapers.com/wallpaper/full/0/3/1/90073.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+overflow-x: hidden;
+}
+
+input {
+  text-indent: 2%;
+  outline: none;
+  padding: 2%;
+}
+
+.greeting-message {
+  margin: 5% 0;
+  display: flex;
+  justify-content: center
+}
+
+.authentication-section {  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.authentication-section input {
+  width: 84%;
+}
+
+.auth-footer-btn {
+  padding: 0;
+  margin-left: 2px;
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.write-thread-form {  
+  display: flex;
+  justify-content: center;
+  margin: 5% 0;
+  border: none;
+  outline: none;
+}
+
+.add-thread-btn {
+  margin-left:2%;
+}
+
+.list-of-threads {  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.single-thread-wrapper {
+  margin: 2% 0;
+  width: 100%;
+}
+
+.single-thread-card {
+  width: 100%;
+}

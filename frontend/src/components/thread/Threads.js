@@ -10,10 +10,9 @@ export default class Threads extends Component {
                 {
                     Object
                         .values(threadsObj)
-                        .map(thread => {
-                            const key = Object.keys(thread);
-                            // console.log(thread);
-                            // return <Thread key={key} details={thread[key]} />
+                        .map(obj => {
+                            const key = Date.now() + obj.createdDate;
+                            return <Thread key={key} details={obj} />
                         })
                 }
             </div>

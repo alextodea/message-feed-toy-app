@@ -4,6 +4,7 @@ const User = require("../users/userSchema");
 exports.getThreads = (req,res) => {
     Thread.find({})
     .populate("author")
+    .sort({createdDate:-1})
         .then( threadsArr => {
             const responseObj = {};
 
