@@ -15,13 +15,11 @@ export default class AddThreadForm extends Component {
 
     render() {
         return (
-            <div className="row">
-                <div className="col-xs-12 col-md-10 col-lg-12">
-                    <form ref={input => {this.threadForm = input}} className="write-thread-form" onSubmit={this.handleSubmit}>
-                        <input ref={(input) => this.questionTitle = input} />
-                        <button className="btn btn-primary add-thread-btn" type="submit">Add question</button>
-                    </form>
-                </div>
+            <div className="add-thread-form-row">   
+                <form ref={input => {this.threadForm = input}} className="write-thread-form" onSubmit={this.handleSubmit}>
+                    <input ref={(input) => this.questionTitle = input} />
+                    <button className="btn btn-primary add-thread-btn" type="submit">Add question</button>
+                </form>
             </div>
         )
     }

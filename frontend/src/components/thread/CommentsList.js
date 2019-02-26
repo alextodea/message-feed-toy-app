@@ -16,8 +16,15 @@ export default class CommentsList extends Component {
   
   render() {
     const details = this.props.details;
+    let commentsTitle;
+    
+    if (details.comments.length > 0) {
+      commentsTitle = <div className="comments-title">Comments:</div>
+    }
+
     return (
       <div className="card-comments-wrapper">
+          {commentsTitle}
           <ul className="list-group list-group-flush">
               {
                   (details.comments && details.comments.length > 0) &&

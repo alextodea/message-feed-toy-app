@@ -28,12 +28,10 @@ export default class Thread extends Component {
     render() {
 
         return (
-            <div className="row d-flex justify-content-center single-thread-wrapper">
-                <div className="card text-center single-thread-card">
-                    <ThreadBody liftUpThreadDeleteParam={this.liftUpThreadDeleteParam} details={this.props.details}/>
-                    <ThreadReplyForm liftCommentSubmitParams={this.liftCommentSubmitParams} details={this.props.details}/>
-                    <CommentsList liftUpCommentDeleteParams={this.liftUpCommentDeleteParams} details={this.props.details}/>
-                </div>
+            <div className="card single-thread-card">
+                <ThreadBody liftUpThreadDeleteParam={this.liftUpThreadDeleteParam} details={this.props.details}/>
+                <ThreadReplyForm liftCommentSubmitParams={this.liftCommentSubmitParams} details={this.props.details}/>
+                <CommentsList liftUpCommentDeleteParams={this.liftUpCommentDeleteParams} details={this.props.details}/>
             </div>
         )
     }

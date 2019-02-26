@@ -41,9 +41,14 @@ export default class ThreadReplyForm extends Component {
   
   render() {
     return (
-      <form ref={input => {this.commentForm = input}} onSubmit={this.handleCommentSubmit} className="card-footer text-muted single-thread-comment-input-wrapper">
-          <input ref={(input) => this.comment = input} type="text"/>
-          <button type="submit" className="btn btn-success">Reply</button>
+      <form ref={input => {this.commentForm = input}} onSubmit={this.handleCommentSubmit} className="card-footer single-thread-comment-input-wrapper">
+          <div className="thread-reply-form-title">
+            Write a reply:
+          </div>
+          <div className="thread-reply-elements-wrapper">
+            <input ref={(input) => this.comment = input} type="text"/>
+            <button type="submit" className="btn btn-success">Reply</button>
+          </div>
       </form>
     )
   }

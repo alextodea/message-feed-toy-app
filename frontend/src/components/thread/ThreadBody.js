@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import {formatDate} from "../../helpers/common";
-
-// components
 import DeleteButton from "../shared/DeleteButton";
+
+const {formatDate} = require("../../helpers/common");
 
 export default class ThreadBody extends Component {
   constructor(props) {
@@ -32,10 +31,10 @@ export default class ThreadBody extends Component {
 
     return (
       <div className="card-body">
-        <h5 className="card-title">wrote by {authorEmail}</h5>
-        <p>on: {formattedDate}</p>
-        <span className="card-text">{title}</span>
-        {deleteThreadButton}
+        <div className="thread-delete-btn">{deleteThreadButton}</div>
+        <div className="thread-date">Posted on: {formattedDate}</div>
+        <div className="thread-author">by {authorEmail}</div>
+        <div className="thread-title">{title}</div>
       </div>
     )
   }

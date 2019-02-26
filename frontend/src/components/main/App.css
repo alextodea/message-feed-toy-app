@@ -62,34 +62,118 @@ input {
   justify-content: center;
 }
 
-.single-thread-wrapper {
-  margin: 2% 0;
-  width: 70%;
+.list-of-threads {
+  padding: 0 7%;
 }
 
-.single-thread-card {
+.add-thread-form-row {
+  padding: 0 5%;
+}
+
+write-thread-form > button.btn.btn-primary.add-thread-btn {
+  font-size: 3px;
+}
+
+button.add-thread-btn {
+  font-size: 75%;
+}
+
+.card.single-thread-card {
+  margin: 5%;
   width: 100%;
 }
 
-.single-thread-card .card-text {
-  background-color: #d3d3d3;
-  border-radius: 5px;
-  padding: 2px;
+.thread-delete-btn {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  top: 5px;
 }
 
-.single-thread-comment-input-wrapper {
-  padding: 4%;
-  display: flex;
-  justify-content: space-between;
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.thread-date, .thread-author {
+    font-size: 80%;
+}
+
+.thread-title {
+  padding: 2%;
+  background-color: lightgray;
+  border-radius: 4px;
+  margin-top: 2%;
+}
+
+.thread-reply-form-title {
+  align-self: center;
+}
+
+.thread-reply-elements-wrapper {
   align-items: center;
+  justify-content: center;
+  align-content: center;
+  display: flex;
 }
 
-.single-thread-comment-input-wrapper input {
-  background-color: lightblue;
-  border: 0px solid;
+.thread-reply-elements-wrapper input[type="text"] {
+  margin-right: 2%;
+  font-size: 70%;
+  width: 100%;
+}
+
+.thread-reply-elements-wrapper > button.btn.btn-success {
+  font-size: 85%;
+}
+
+form.card-footer.single-thread-comment-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.write-thread-form input {
   width: 70%;
 }
 
-.single-thread-comment-input-wrapper button {
-  width: 25%;
+.greeting-message h1 {
+  font-size: 100%;
+  font-weight: bold;
+}
+
+.comment-delete-btn {
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  right: 2%;
+  transform: translateY(-50%);
+}
+
+li.list-group-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-details-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+span.comment-createdAt {
+  font-size: 70%;
+}
+
+span.comment-author {
+  font-size: 70%;
+}
+
+span.comment-body {
+  font-size: 80%;
+  font-weight: bold;
+}
+
+.comments-title {
+  text-align: center;
+  color: white;
+  background-color: black;
 }

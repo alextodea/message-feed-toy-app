@@ -25,10 +25,12 @@ export default class Comment extends Component {
 
     return (
       <li className="list-group-item">
-          <span className="comment-author">{author}</span>
+          <div className="comment-delete-btn">{deleteCommentBtn}</div>
+          <div className="comment-details-wrapper">
+            <span className="comment-createdAt">replied on {createdDate}</span>
+            <span className="comment-author">by {author}</span>
+          </div>
           <span className="comment-body">{body}</span>
-          <span className="comment-createdAt">{createdDate}</span>
-          {deleteCommentBtn}
       </li>
     )
   }
