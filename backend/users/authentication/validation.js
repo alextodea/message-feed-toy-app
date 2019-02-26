@@ -7,6 +7,7 @@ const errorMessages = {
     password: {
         length: {message: "Password is not strong enough. It should be minimum 6 characters."},
         match: {message: "Passwords don't match."},
+        incorrect: {message:"Your password is incorrect."},
         internal: {message: "There was a problem processing your request. Please try again later."}
     },
     email: {message:"E-mail is not valid."}
@@ -33,7 +34,7 @@ exports.compareStringAndHashPassword = (stringPass,hashPass) => {
     return new Promise( (resolve,reject) => {
         bcrypt.compare(stringPass,hashPass)
             .then(passwordsMatch => {
-                (passwordsMatch) ? resolve() : reject(errorMessages.password.match)
+                (passwordsMatch) ? resolve() : reject(errorMessages.password.incorrect)
             })
             .catch(err => {
                 console.error(err);
