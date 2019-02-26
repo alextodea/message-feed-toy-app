@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
-import Thread from "../components/thread/Thread";
+import ThreadsList from "../components/thread/ThreadsList";
+// import Thread from "../components/thread/Thread";
 import AddThreadForm from "../components/thread/AddThreadForm";
 import axios from "axios";
 import {GET_THREADS, GET_SINGLE_USER,POST_THREAD,POST_DELETE_COMMENT,POST_DELETE_THREAD} from "../../src/helpers/routes";
@@ -10,7 +11,7 @@ export default class Feed extends Component {
     super(props);
 
     this.onThreadSubmit = this.onThreadSubmit.bind(this);
-    this.onCommentSubmit = this.onCommentSubmit.bind(this);
+    this.handleComment = this.handleComment.bind(this);
     this.removeComment = this.removeComment.bind(this);
     this.removeThread = this.removeThread.bind(this);
 
@@ -49,7 +50,7 @@ export default class Feed extends Component {
 
       threads[threadId] = {
         title,
-        email: emailFromLocalStorage,
+        authorEmail: emailFromLocalStorage,
         createdDate,
         authorId: _id,
         _id: threadId,
@@ -87,7 +88,6 @@ export default class Feed extends Component {
     delete threads[_id];
     this.setState({threads});
     try {
-      // Add a condition for thread to show "myself" as author when posted by current user
       // Re-use delete buttons
       // check which functions can be re-used
       // take a look on how the code looks and clean it
@@ -101,7 +101,7 @@ export default class Feed extends Component {
     }
   }
 
-  onCommentSubmit(commentObj){
+  handleComment(commentObj){
     const threads = {...this.state.threads};
     const {author,body,createdDate,threadId,_id} = commentObj;
     threads[threadId].comments.push({_id,author,body,createdDate});
@@ -114,22 +114,12 @@ export default class Feed extends Component {
         <h2 className="feed-page-title">Welcome to Feedio - Ask questions or reply to threads.</h2>
         <div className="threads-main-container">
           <AddThreadForm onThreadSubmit={this.onThreadSubmit} />
-          <div className="list-of-threads">
-                {
-                    Object
-                        .values(this.state.threads)
-                        .map(obj => {
-                            const key = Date.now() + obj._id;
-                            return <Thread 
-                                    removeThread={this.removeThread}
-                                    removeComment={this.removeComment} 
-                                    handleComment={this.onCommentSubmit} 
-                                    key={key} 
-                                    details={obj} 
-                                   />
-                        })
-                }
-            </div>
+          <ThreadsList 
+            removeThread={this.removeThread}
+            removeComment={this.removeComment} 
+            handleComment={this.handleComment} 
+            details={this.state.threads} 
+          />
         </div>
       </section>
     )

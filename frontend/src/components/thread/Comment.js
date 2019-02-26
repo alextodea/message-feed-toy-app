@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import DeleteButton from "../shared/DeleteButton";
 
 export default class Comment extends Component {
   constructor(props) {
@@ -18,8 +19,8 @@ export default class Comment extends Component {
     let deleteCommentBtn;
     const currentUser = localStorage.getItem("email");
     if (author===currentUser) {
-      author = "Me:";
-      deleteCommentBtn = <i className="fa fa-times" onClick={this.onClickDeleteComment} aria-hidden="true"></i>;
+      author = "Me";
+      deleteCommentBtn = <DeleteButton onDeleteButtonClick={this.onClickDeleteComment} />
     }
 
     return (
