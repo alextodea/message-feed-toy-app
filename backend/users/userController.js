@@ -19,7 +19,6 @@ exports.getLogin = (req,res) => {
 
 exports.postLogin = async (req,res,next) => {
     try {
-        // await validation.validateEmailAndPassword(req.body);
         const userInDb = await login.retrieveUser(req.body.email);
         await validation.compareStringAndHashPassword(req.body.password,userInDb.password);
         const token = await validation.signToken(userInDb.email);

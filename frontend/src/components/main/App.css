@@ -177,3 +177,11 @@ span.comment-body {
   color: white;
   background-color: black;
 }
+
+.auth-error-message {
+  font-size: 80%;
+  align-self: center;
+  margin-top: 5%;
+  color: red;
+  font-weight: bold;
+}

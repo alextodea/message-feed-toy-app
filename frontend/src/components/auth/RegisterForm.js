@@ -9,6 +9,7 @@ import PasswordFormGroup from "./shared/PasswordFormGroup"
 import VerificationPassFormGroup from "./shared/VerificationPassFormGroup"
 import AuthenticateButton from "./shared/AuthenticateButton"
 import RegisterFormFooter from "./shared/RegisterFormFooter";
+import DisplayErrorMessageDiv from "./shared/DisplayErrorMessageDiv";
 
 export default class RegisterForm extends Component {
   constructor(props) {
@@ -19,7 +20,11 @@ export default class RegisterForm extends Component {
       password:"",
       verificationPassword:"",
       token:"",
-      formTitle: "Register"
+      formTitle: "Register",
+      error: {
+        exists:false,
+        message:""
+      }
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -47,13 +52,25 @@ export default class RegisterForm extends Component {
 
       this.props.authenticateUser();
     } catch(e) {
-      console.log(e);
+      const errorMsg = e.response.data.message;
+      this.setState({
+        error: {
+          exists:true,
+          message:errorMsg
+        }
+      })
     }
   }
   
   
   render() {
     if (this.props.state.isLoggedIn) return <Redirect to="/"/>
+
+    let displayErrorMsg;
+    if (this.state.error.exists) {
+      displayErrorMsg = <DisplayErrorMessageDiv errorMessage={this.state.error.message} />
+    }
+
     return (
       <div className="authentication-section">
         <div className="card">
@@ -65,6 +82,7 @@ export default class RegisterForm extends Component {
             <VerificationPassFormGroup handleInputChange={this.handleInputChange}/>
             <AuthenticateButton authBtnText={this.state.formTitle} />
           </form>
+          {displayErrorMsg}            
         </div>
         <RegisterFormFooter/>
         </div>

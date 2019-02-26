@@ -8,6 +8,7 @@ import EmailFormGroup from "./shared/EmailFormGroup";
 import PasswordFormGroup from "./shared/PasswordFormGroup"
 import AuthenticateButton from "./shared/AuthenticateButton"
 import LoginFormFooter from "./shared/LoginFormFooter";
+import DisplayErrorMessageDiv from "./shared/DisplayErrorMessageDiv";
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -17,7 +18,11 @@ export default class LoginForm extends Component {
       email:"",
       password:"",
       token:"",
-      formTitle: "Log in"
+      formTitle: "Log in",
+      error: {
+        exists:false,
+        message:""
+      }
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -46,13 +51,25 @@ export default class LoginForm extends Component {
       this.props.authenticateUser();
 
     } catch(e) {
-      console.log(e);
+      const errorMsg = e.response.data.message;
+      this.setState({
+        error: {
+          exists:true,
+          message:errorMsg
+        }
+      })
     }
   }
   
   
   render() {
     if (this.props.state.isLoggedIn) return <Redirect to="/"/>
+    
+    let displayErrorMsg;
+    if (this.state.error.exists) {
+      displayErrorMsg = <DisplayErrorMessageDiv errorMessage={this.state.error.message} />
+    }
+
     return (
       <div className="authentication-section">
         <div className="card">
@@ -62,7 +79,9 @@ export default class LoginForm extends Component {
                 <EmailFormGroup handleInputChange={this.handleInputChange}/>
                 <PasswordFormGroup handleInputChange={this.handleInputChange}/>
                 <AuthenticateButton authBtnText={this.state.formTitle} />
-              </form>            </div>
+              </form>
+              {displayErrorMsg}            
+            </div>
             <LoginFormFooter/>
 		      </div>
       </div>
