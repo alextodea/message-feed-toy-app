@@ -80,7 +80,6 @@ export default class Thread extends Component {
                             {
                                 (details.comments && details.comments.length > 0) &&
                                     details.comments.map(obj => {
-                                        console.log(obj);
                                         const key = Date.now() + obj.createdDate;
                                         return <Comment processCommentDelete={this.processCommentDelete} key={key} details={obj} />
                                     })

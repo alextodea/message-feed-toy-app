@@ -1,5 +1,6 @@
 const Thread = require("./threadSchema");
 const User = require("../users/userSchema");
+const Comment = require("../comments/commentSchema");
 
 exports.getThreads = async (req,res) => {
     try {
@@ -66,7 +67,11 @@ exports.getSingleThread = async (req,res) => {
 exports.removeSingleThread = async (req,res) => {
     try {
         const _id = req.body._id;
-        await Thread.findOneAndDelete({_id});
+        const thread = await Thread.findById(_id);
+
+        if (thread.comments.length > 0) await Comment.find({'_id': { $in: thread.comments}}).remove(); 
+        
+        thread.remove()
         res.status(200);
     } catch (e) {
         res.status(404).json({message:"Resource not found."});

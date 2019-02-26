@@ -87,6 +87,14 @@ export default class Feed extends Component {
     delete threads[_id];
     this.setState({threads});
     try {
+      // Add a condition for thread to show "myself" as author when posted by current user
+      // Re-use delete buttons
+      // check which functions can be re-used
+      // take a look on how the code looks and clean it
+      // add test for app
+      // build it for production and test to see if it works
+      // remove project from windows and re-add it to see if it works
+      // write project description in github and instruction on how to run it
       await axios.post(POST_DELETE_THREAD,{_id});
     } catch(e) {
       console.error(e);

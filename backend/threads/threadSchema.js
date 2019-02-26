@@ -13,8 +13,6 @@ const ThreadSchema = new Schema({
     createdDate: { type: Date, default: Date.now }
 });
 
-ThreadSchema.pre('remove', function() { console.log('Removing!'); });
-
 const Thread = mongoose.model("Thread",ThreadSchema);
 
 module.exports = Thread;

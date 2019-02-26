@@ -8,7 +8,6 @@ export default class Comment extends Component {
 
   onClickDeleteComment() {
     const id = this.props.details._id;
-    console.log(id)
     this.props.processCommentDelete(id);
   }
   
