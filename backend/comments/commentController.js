@@ -17,6 +17,15 @@ exports.addComment = (req,res) => {
             console.error(e);
             res.status(500).json({message:"Internal error!"});
         })
-}
+};
 
-// get comments
+exports.removeSingleComment = async (req,res) => {
+    try {
+        const _id = req.body._id;
+        console.log(_id);
+        await Comment.deleteOne({_id});
+        res.status(200);
+    } catch (e) {
+        res.status(404).json({message:"Resource not found."});
+    }
+}
