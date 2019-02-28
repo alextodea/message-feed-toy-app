@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DeleteButton from "../shared/DeleteButton";
+const {formatDate} = require("../../helpers/common");
 
 export default class Comment extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class Comment extends Component {
   render() {
     const details = this.props.details;
     let {author,body,createdDate} = details;
+    const formattedDate = formatDate(createdDate);
 
     let deleteCommentBtn;
     const currentUser = localStorage.getItem("email");
@@ -27,7 +29,7 @@ export default class Comment extends Component {
       <li className="list-group-item">
           <div className="comment-delete-btn">{deleteCommentBtn}</div>
           <div className="comment-details-wrapper">
-            <span className="comment-createdAt">replied on {createdDate}</span>
+            <span className="comment-createdAt">replied on {formattedDate}</span>
             <span className="comment-author">by {author}</span>
           </div>
           <span className="comment-body">{body}</span>
