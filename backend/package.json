@@ -4,7 +4,6 @@
   "description": "Backend of message feed toy app",
   "main": "server.js",
   "scripts": {
-    "test": "test",
     "backend": "nodemon server.js",
     "frontend": "npm run start --prefix ../frontend",
     "devstart": "concurrently \"npm run backend\" \"npm run frontend\""
